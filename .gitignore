@@ -1,0 +1,8 @@
+/.vscode/
+/.idea/
+
+*.DS_Store
+*.psd
+
+*/**/node_modules/
+/node_modules/

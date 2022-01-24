@@ -52,7 +52,7 @@ function browserSync(params) {
 		server: {
 			baseDir: './' + project_folder + '/'
 		},
-		port: 3000,
+		port: 8080,
 		notify: false
 	})
 }

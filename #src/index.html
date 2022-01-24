@@ -147,7 +147,7 @@
 		</main>
 		@@include('_footer.html')
 	</div>
-	<div class="popup">
+	<div class="popup " id='popup'>
 		<div class="popup__body">
 			<div class="popup__content">
 				<a href="#" class="popup__close close-popup"><span class='icon-close'></span></a>
@@ -178,13 +178,17 @@
 			</div>
 		</div>
 	</div>
-	<div class="overlay overlay-thank-you">
-		<div class="popup-thank-you">
-			<a href="#" class="popup__close close-popup"><span class='icon-close'></span></a>
-			<p class="thank-you__text">Your message successfully sent</p>
+	<div class="popup-success popup">
+		<div class="popup-success-body popup__body">
+			<div class="popup-success-content">
+				<a href="#" class="popup__close close-popup"><span class='icon-close'></span></a>
+				<p class="thank-you__text">Your message successfully sent</p>
+			</div>
 		</div>
 	</div>
 	<script src='js/scriptmin.js'></script>
+
+
 </body>
 
 </html>

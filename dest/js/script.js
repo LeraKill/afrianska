@@ -84,11 +84,9 @@ if (animItems.length > 0) {
 	animForScroll();
 }
 
-
-
+// ПОПАП
 let popup = document.querySelector('.popup');
 let popupBody = document.querySelector('.popup__body');
-let popupContent = document.querySelector('.popup__content');
 let openPopupButtons = document.querySelectorAll('.open-popup');
 let closePopupButton = document.querySelector('.close-popup');
 
@@ -96,7 +94,6 @@ openPopupButtons.forEach((button) => {
 	button.addEventListener('click', (e) => {
 		e.preventDefault();
 		popup.classList.add('open');
-		popupContent.classList.add('open');
 		document.body.classList.add('_lock');
 	})
 });
@@ -104,19 +101,16 @@ openPopupButtons.forEach((button) => {
 closePopupButton.addEventListener('click', (e) => {
 	e.preventDefault();
 	popup.classList.remove('open');
-	popupContent.classList.remove('open');
 	document.body.classList.remove('_lock');
 });
 
 document.addEventListener('click', (e) => {
 	if (e.target === popupBody) {
 		popup.classList.remove('open');
-		popupContent.classList.remove('open');
 		document.body.classList.remove('_lock');
 	}
 });
-
-
+// РАБОТА С ФОРМОЙ
 
 document.addEventListener('DOMContentLoaded', function () {
 	const form = document.getElementById('form');
@@ -131,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		if (isFormValid === true) {
 			formBody.classList.add('_sending');
-			let url = '/index.php';
+			let url = 'http://localhost:8080/index.php';
 			let response = await fetch(url, {
 				method: "POST",
 				headers: {
@@ -139,10 +133,12 @@ document.addEventListener('DOMContentLoaded', function () {
 				},
 				body: formData,
 			});
-
 			if (response.ok) { // если ок отправлено - то сюда видимо попап спасибо за отправку
-				let result = await response.json();
-				alert(result.message);
+				let popupSuccess = document.querySelector('.popup-success');
+				popup.classList.remove('open');
+				popupSuccess.classList.add('open');
+				document.body.classList.add('_lock');
+				setTimeout(closePopupSuccess, 2000);
 				form.reset();
 				formBody.classList.remove('_sending');
 			} else {
@@ -150,6 +146,11 @@ document.addEventListener('DOMContentLoaded', function () {
 				formBody.classList.remove('_sending');
 			}
 		}
+	}
+	function closePopupSuccess() {
+		let popupSuccess = document.querySelector('.popup-success');
+		popupSuccess.classList.remove('open');
+		document.body.classList.remove('_lock');
 	}
 
 	function formValidate(form) {
@@ -176,8 +177,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 		return isFormValid;
 	}
-
-
 });
 
 
